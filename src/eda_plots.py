@@ -1,17 +1,13 @@
 """
 eda_plots.py
 Purpose: Provide reusable plotting functions for solar farm data.
-Author: Kernemi Kidane
-Date: Nov 9, 2025
 """
 
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
-# -------------------------------------------------------------------
-# 1️⃣ Irradiance Over Time
-# -------------------------------------------------------------------
+# 1️ Irradiance Over Time
 def plot_irradiance_time_series(df, columns=['GHI', 'DNI', 'DHI']):
     """Plot solar irradiance (GHI, DNI, DHI) over time."""
     plt.figure(figsize=(14,5))
@@ -23,9 +19,8 @@ def plot_irradiance_time_series(df, columns=['GHI', 'DNI', 'DHI']):
     plt.legend()
     plt.show()
 
-# -------------------------------------------------------------------
-# 2️⃣ Daily & Monthly Averages
-# -------------------------------------------------------------------
+# 2️ Daily & Monthly Averages
+
 def plot_daily_monthly_mean(df, columns=['GHI', 'DNI', 'DHI']):
     """Plot daily and monthly average irradiance."""
     daily_mean = df.resample('D').mean()
@@ -36,9 +31,7 @@ def plot_daily_monthly_mean(df, columns=['GHI', 'DNI', 'DHI']):
     monthly_mean[columns].plot(figsize=(14,5), title="Monthly Average Irradiance")
     plt.show()
 
-# -------------------------------------------------------------------
-# 3️⃣ Cleaning Impact
-# -------------------------------------------------------------------
+# 3 Cleaning Impact
 def plot_cleaning_impact(df, module_cols=['ModA','ModB']):
     """Compare module irradiance before and after cleaning."""
     df.groupby('Cleaning')[module_cols].mean().plot(kind='bar', figsize=(8,5))
@@ -46,9 +39,7 @@ def plot_cleaning_impact(df, module_cols=['ModA','ModB']):
     plt.ylabel("Average Irradiance (W/m²)")
     plt.show()
 
-# -------------------------------------------------------------------
-# 4️⃣ Correlation Heatmap
-# -------------------------------------------------------------------
+# 4 Correlation Heatmap
 def plot_correlation_heatmap(df, columns=['GHI','DNI','DHI','TModA','TModB','Tamb','RH']):
     """Plot correlation heatmap of key numeric variables."""
     plt.figure(figsize=(10,6))
@@ -56,9 +47,7 @@ def plot_correlation_heatmap(df, columns=['GHI','DNI','DHI','TModA','TModB','Tam
     plt.title("Correlation Heatmap")
     plt.show()
 
-# -------------------------------------------------------------------
-# 5️⃣ Scatter Relationship Plots
-# -------------------------------------------------------------------
+# 5 Scatter Relationship Plots
 def plot_scatter_wind_vs_ghi(df):
     """Plot Wind Speed vs GHI."""
     sns.scatterplot(x='WS', y='GHI', data=df)
@@ -84,9 +73,7 @@ def plot_rh_vs_ghi(df):
     plt.title("Relative Humidity vs GHI")
     plt.show()
 
-# -------------------------------------------------------------------
-# 6️⃣ Wind Analysis
-# -------------------------------------------------------------------
+# 6 Wind Analysis
 def plot_wind_distribution(df):
     """Plot histogram of wind speeds."""
     df['WS'].hist(bins=30, figsize=(8,5))
@@ -105,9 +92,7 @@ def plot_wind_polar(df):
     plt.title("Wind Direction & Speed")
     plt.show()
 
-# -------------------------------------------------------------------
-# 7️⃣ Bubble Chart
-# -------------------------------------------------------------------
+# 7 Bubble Chart
 def plot_bubble(df):
     """Bubble chart: GHI vs Ambient Temperature (bubble size = RH)."""
     plt.figure(figsize=(10,6))
