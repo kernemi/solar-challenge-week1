@@ -5,4 +5,6 @@ seaborn
 scipy
 streamlit
 scikit-learn
-
+plotly
+pytest
+jupyterlab
